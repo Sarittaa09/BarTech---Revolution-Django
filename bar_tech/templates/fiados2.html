@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Venta</title>
+    <link rel="stylesheet" href="{% static 'css/fiados1.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Detalles de la Venta</h1>
+    </header>
+
+    <section id="informacionCliente">
+        <h2>Nombre: {{ cliente.nombre }}</h2>
+        <p>Teléfono: {{ cliente.telefono }}</p>
+    </section>
+
+    <table id="tablaFiadosDetalles">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Total</th>
+                <th>Abonos</th>
+                <th>Restante</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in ventas %}
+            <tr>
+                <td>{{ ventas.cliente.nombre }}</td>
+                <td>${{ ventas.total }}</td>
+                <td>${{ ventas.abonos }}</td>
+                <td>${{ ventas.restante }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No hay ventas registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form action="{% url 'registrar_abono' cliente.id %}" method="POST">
+        {% csrf_token %}
+        <label for="abonos">Registrar Abono:</label>
+        <input type="number" name="abonos" id="abonos" min="0" step="0.01" placeholder="Cantidad del abono" required>
+        <button type="submit">Registrar Abono</button>
+    </form>
+
+    <div class="botones">
+        <a href="{% url 'listar_cliente' %}"><button class="boton-gradiente">Volver</button></a>
+    </div>
+</body>
+</html>

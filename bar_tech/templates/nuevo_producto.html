@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Producto</title>
+    <link rel="stylesheet" href="{% static 'css/formulario_producto.css' %}">
+</head>
+<body>
+    <h1>Agregar Producto</h1>
+    <br><br>
+    <a href="{% url 'index' %}"><button>Volver</button></a>
+    
+    {% if messages %}
+        <div class="mensaje-exito">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+
+    <h2>Lista de productos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoría</th>
+                <th>Foto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td>{{ producto.stock }}</td>
+                    <td>{{ producto.get_categoria_display }}</td>
+                    <td>
+                        {% if producto.foto %}
+                            <img src="{{ producto.foto.url }}" alt="foto" width="100">
+                        {% else %}
+                            No hay foto
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

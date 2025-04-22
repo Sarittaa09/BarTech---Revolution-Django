@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', sans-serif;
+}
+
+body {
+    background-image: linear-gradient(135deg, #3B2C23, #1C1C1C);
+    color: #F3E5D7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    line-height: 1.6;
+}
+
+header {
+  max-width: 1200px;
+  margin: 10px auto;
+  background: linear-gradient(135deg, #A2653B, #9B7A59);
+  padding: 20px;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+header h1 {
+  color: #F3E5D7;
+  margin: 0;
+  font-weight: 600;
+}
+
+form {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #9B7A59; 
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(59, 44, 35, 0.6);
+    animation: fadeIn 1s ease;
+    color: #3B2C23;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #3B2C23;
+}
+
+input,
+select,
+input[type="date"],
+input[type="number"] {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background-color: #F3E5D7; 
+    color: #3B2C23;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+input::placeholder {
+    color: #9B7A59;
+}
+
+input:focus,
+select:focus {
+    background-color: #FFF;
+    outline: none;
+    box-shadow: 0 0 0 2px #A2653B;
+}
+
+button {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #A2653B, #D7B89E);
+    border: none;
+    border-radius: 10px;
+    color: #3B2C23;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 14px rgba(162, 101, 59, 0.4);
+}
+
+button:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 18px rgba(162, 101, 59, 0.5);
+}
+
+table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background: #D7B89E; 
+    border-radius: 12px;
+    overflow: hidden;
+    color: #3B2C23;
+}
+
+th, td {
+    padding: 14px 12px;
+    text-align: center;
+    border-bottom: 1px solid #A2653B;
+}
+
+th {
+    background: linear-gradient(135deg, #A2653B, #9B7A59);
+    color: #F3E5D7;
+    font-weight: 600;
+}
+
+.mensaje-exito {
+    background-color: #F3E5D7;
+    color: #3B2C23;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(59, 44, 35, 0.2);
+    animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

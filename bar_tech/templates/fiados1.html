@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiados</title>
+    <link rel="stylesheet" href="{% static 'css/fiados1.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Deben (Fiados)</h1>
+    </header>
+    <br><br>
+
+    <div class="filtros-fiados">
+        <a href="{% url 'index' %}">
+            <button class="boton-gradiente">Volver</button>
+        </a>
+    
+        <form method="get" class="form-filtro">
+            <label for="filtroNombre">Buscar cliente:</label>
+            <input type="text" id="filtroNombre" name="nombre" placeholder="Escribe el nombre del cliente">
+        </form>
+    
+        <a href="{% url 'crear_cuenta_cliente' %}">
+            <button class="boton-gradiente">Crear Cliente</button>
+        </a>
+    </div>
+    <br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>TELEFONO</th>
+                <th>TOTAL A DEBER</th>
+                <th>ABONOS</th>
+                <th>RESTANTE</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in datos_clientes %}
+            {% if item.cliente.id %}
+            <tr>
+                <td>{{ item.cliente.nombre }}</td>
+                <td>{{ item.cliente.apellidos }}</td>
+                <td>{{ item.cliente.telefono }}</td>
+                <td>${{ item.cliente.deben }}</td>
+                <td>${{ item.cliente.abonos }}</td>
+                <td>${{ item.cliente.restante }}</td>
+                <td>
+                    <a href="{% url 'fiados2' item.cliente.id %}">
+                        <button class="boton-gradiente">Ver más</button>
+                    </a>
+                </td>
+            </tr>
+            {% endif %}
+            {% empty %}
+                <tr>
+                    <td colspan="7">No hay clientes con deudas registradas.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form method="post" action="{% url 'registrar_abono' %}">
+        {% csrf_token %}
+        <br><br>
+        
+        <label for="cliente_id">Seleccionar Cliente:</label>
+        <select name="cliente_id" id="cliente_id" required>
+            <option value="" disabled selected>Seleccione un cliente</option>
+            {% for cliente in clientes %}
+                <option value="{{ cliente.id }}">{{ cliente.nombre }} {{ cliente.apellidos }} - {{ cliente.telefono }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="abonos">Registrar Abono:</label>
+        <input type="number" name="abonos" id="abonos" min="0" step="0.01" placeholder="Cantidad del abono" required>
+        
+        <button type="submit">Registrar Abono</button>
+    </form>
+
+    <div class="botones" style="margin-top: 30px;">
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+body {
+    background-image: linear-gradient(135deg, #3B2C23, #1C1C1C);
+    font-family: 'Gill Sans', sans-serif;
+    color: #F3E5D7; 
+    text-align: center;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registro-container {
+    background: linear-gradient(135deg, #A2653B, #9B7A59); 
+    padding: 25px;
+    border-radius: 12px;
+    border: 3px solid #D7B89E; 
+    box-shadow: 0 0 30px rgba(211, 185, 158, 0.8);
+    max-width: 400px;
+    width: 90%;
+    transition: all 0.3s ease-in-out;
+}
+
+.registro-container h2 {
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #F3E5D7;
+}
+
+.registro-container input,
+.registro-container select {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    background: #D7B89E; 
+    color: #3B2C23;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.registro-container input::placeholder,
+.registro-container select {
+    color: #9B7A59;
+}
+
+.registro-container input:focus,
+.registro-container select:focus {
+    background: #F3E5D7;
+    box-shadow: 0 0 15px rgba(243, 229, 215, 0.7);
+    border: 2px solid #A2653B;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 15px; 
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    background: linear-gradient(to right, #A2653B, #D7B89E);
+    border-radius: 10px;
+    color: #3B2C23;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(162, 101, 59, 0.5);
+}
+
+button:hover {
+    background: linear-gradient(to right, #D7B89E, #A2653B);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(162, 101, 59, 0.7);
+}

@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-image: linear-gradient(135deg, #3B2C23, #1C1C1C); 
+    color: #F3E5D7;     
+    text-align: center;
+    padding: 20px;
+}
+
+header {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: linear-gradient(to right, #A2653B, #9B7A59); 
+    padding: 20px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+header h1 {
+    color: #F3E5D7;
+    font-size: 24px;
+}
+
+.filtro input {
+    width: 60%;
+    padding: 12px;
+    font-size: 1em;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #F3E5D7;
+    text-align: center;
+    outline: none;
+    transition: 0.3s;
+}
+
+.filtro input:hover,
+.filtro input:focus {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.formulario {
+    max-width: 400px;
+    margin: 0 auto 20px;
+    background: #1C1C1C;
+    padding: 20px;
+    border-radius: 10px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.formulario h2 {
+    margin-bottom: 15px;
+    color: #F3E5D7;
+}
+
+.formulario input,
+.formulario select,
+.formulario button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.formulario input,
+.formulario select {
+    background: #9B7A59;
+    color: #1C1C1C;
+    text-align: center;
+}
+
+.formulario input:hover,
+.formulario select:hover,
+.formulario input:focus,
+.formulario select:focus {
+    background: #D7B89E;
+}
+
+button {
+    padding: 10px 20px;
+    background: linear-gradient(to right, #A2653B, #3B2C23); 
+    border-radius: 10px;
+    color: #F3E5D7;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(162, 101, 59, 0.5);
+}
+
+button:hover {
+    background: linear-gradient(to right, #3B2C23, #A2653B);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(59, 44, 35, 0.6);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: #F3E5D7;
+    background: #1C1C1C;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid rgba(243, 229, 215, 0.2);
+}
+
+th {
+    background: linear-gradient(to right, #9B7A59, #A2653B);
+    color: white;
+    text-transform: uppercase;
+}
+
+td {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alerta-stock {
+    background-color: #ffeb3b;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}

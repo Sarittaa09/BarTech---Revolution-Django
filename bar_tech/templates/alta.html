@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta</title>
+    <link rel="stylesheet" href="{% static 'css/categorias.css' %}">
+</head>
+<body>
+<header>
+    <h1>Alta</h1>
+</header>
+
+<br><br>
+<a href="{% url 'ver_carrito' %}"><button>Ver Carrito</button></a>
+<a href="{% url 'index' %}"><button>Volver</button></a>
+<br><br>
+
+<ul>
+  {% for producto in alta %}
+  <li class="product-item" data-price="{{ producto.precio }}" data-category="Alta">
+    <form method="post" action="{% url 'agregar_carrito' %}">
+      {% csrf_token %}
+      <div class="product-container">
+          <img src="{{ producto.foto.url }}" alt="{{ producto.nombre }}">
+          <strong>{{ producto.nombre }}</strong>
+          <strong>${{ producto.precio }}</strong>
+          
+          <input type="hidden" name="producto_id" value="{{ producto.id }}">
+          <div class="wrapper">
+            <span class="minus">-</span>
+            <span class="num">01</span>
+            <span class="plus">+</span>
+        </div>
+        <input type="hidden" name="cantidad" value="1" class="cantidad-input">
+
+          <button type="submit">Añadir al carrito</button>
+      </div>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+
+% static 'js/contador.js' %}"></script>
+</body>
+</html>

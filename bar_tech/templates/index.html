@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarTech-Revolution</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="inventory-container">
+        <h1>Categoría</h1>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div id="overlay"></div>
+          
+    <div class="menu">
+        <ul>
+            <li><button class="custom-button"><a href="{% url 'registro_horarios' %}">Horarios</a></button></li>
+            <li><button class="custom-button"><a href="{% url 'lista_fiados' %}">Deben</a></button></li>
+            <li><button class="custom-button"><a href="{% url 'nuevo_producto' %}">Nuevo producto</a></button></li>
+            <li><button class="custom-button"><a href="#">Nueva categoría</a></button></li>
+            <li><button class="custom-button"><a href="{% url 'agregar_carrito' %}">Carrito</a></button></li>
+            <li><button class="custom-button"><a href="{% url 'logout' %}">Cerrar Sesión</a></button></li>
+        </ul>
+    </div>
+
+    <div id="overlay"></div>
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="{% static 'img/cerveza.jpg' %}" alt="Cervezas">
+                <h2>Cervezas</h2>
+                <a class="btn" href="{% url 'cerveza' %}">Ver más</a>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'img/aguardiente.jpg' %}" alt="Aguardiente">
+                <h2>Aguardiente</h2>
+                <a class="btn" href="{% url 'aguardiente' %}">Ver más</a>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'img/gaseosas.jpg' %}" alt="Gaseosas">
+                <h2>Gaseosas</h2>
+                <a class="btn" href="{% url 'g' %}">Ver más</a>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'img/whisky.jpg' %}" alt="Alta">
+                <h2>Alta</h2>
+                <a class="btn" href="{% url 'alta' %}">Ver más</a>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'img/rones.jpg' %}" alt="Ron">
+                <h2>Ron</h2>
+                <a class="btn" href="{% url 'rones' %}">Ver más</a>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'img/otros.jpg' %}" alt="Otros">
+                <h2>Otros</h2>
+                <a class="btn" href="{% url 'otro' %}">Ver más</a>
+            </div>
+        </div>
+        <div class="terms-section">
+            <hr class="terms-divider">
+            
+            <div class="terms-section">
+                <a href="#" id="open-terms">Términos y Condiciones</a>
+                <a href="#" id="open-privacy">Políticas de Privacidad</a>
+        
+            <div id="overlay"></div>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div id="modal-text"></div>
+                    <br>
+                </div>
+            </div>
+    </div>
+<script src={% static 'js/scripts.js' %}></script>
+</body>
+</html>

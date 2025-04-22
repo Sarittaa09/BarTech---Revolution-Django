@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Horarios</title>
+    <link rel="stylesheet" href="{% static 'css/horarios.css' %}">
+</head>
+<body>
+    <header>
+        <h1>REGISTRO DE HORARIOS DE TRABAJO</h1>
+    </header>
+
+    <a href="{% url 'index' %}">
+        <button>Volver</button>
+    </a>
+
+    <form method="post">
+        {% csrf_token %}
+        <form method="get">
+            <div>
+                {{ filtro_form.trabajador.label_tag }} {{ filtro_form.trabajador }}
+                {{ filtro_form.fecha.label_tag }} {{ filtro_form.fecha }}
+                <button type="submit">Filtrar</button>
+            </div>
+        </form>
+        
+        <div>
+            {{ form.fecha.label_tag }} {{ form.fecha }}
+            {{ form.usuario.label_tag }} {{ form.usuario }}
+            <label for="id_horas_inicio">Hora Inicio:</label> {{ form.horas_inicio }}
+            <label for="id_horas_fin">Hora Fin:</label> {{ form.horas_fin }}
+            <button type="submit">Agregar Registro</button>
+        </div>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>FECHA</th>
+                <th>TRABAJADOR</th>
+                <th>HORAS TRABAJADAS</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for horario in horarios %}
+            <tr>
+                <td>{{ horario.fecha|date:"d/m/Y" }}</td>
+                <td>{{ horario.usuario }}</td>
+                <td>{{ horario.horas_trabajadas }} hrs</td>
+                <td>
+                    <form method="post" action="{% url 'eliminar_horario' horario.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="boton-eliminar">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay registros aún.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

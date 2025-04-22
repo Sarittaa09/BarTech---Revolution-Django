@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="{% static 'css/carrito.css' %}">
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+<div class="container">
+    <header><h1>Carrito de Compras</h1></header>
+    
+
+    {% if carrito %}
+    <table>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+        {% for item in carrito %}
+        <tr>
+            <td>{{ item.producto.nombre }}</td>
+            <td>
+                <form method="post" action="{% url 'editar_carrito' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="producto_id" value="{{ item.producto.id }}">
+                    <input type="number" name="cantidad" value="{{ item.cantidad }}" min="1">
+                    <button type="submit">Actualizar</button>
+                </form>
+            </td>
+            <td>${{ item.total }}</td>
+            <td>
+                <form method="post" action="{% url 'eliminar_carrito' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="producto_id" value="{{ item.producto.id }}">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No hay productos en el carrito.</p>
+    {% endif %}
+
+    <hr>
+    <br><br>
+    <form method="post" action="{% url 'finalizar_venta' %}">
+        {% csrf_token %}
+
+        <label>Mesero:</label>
+        <select name="usuario" required>
+            {% for usuario in usuarios %}
+                <option value="{{ usuario.id }}">{{ usuario.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Cliente:</label>
+        <select name="cliente" required>
+            {% for cliente in clientes %}
+                <option value="{{ cliente.id }}">{{ cliente.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Mesa:</label>
+        <input type="number" name="mesa" required>
+
+        <button type="submit">Finalizar Venta</button>
+    </form>
+    <br><br>
+    <a href="{% url 'index' %}"><button>Volver</button></a>
+</div>
+</body>
+</html>
